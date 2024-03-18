@@ -42,8 +42,9 @@ class ArticlesController < ApplicationController
     redirect_to root_path, status: :see_other
   end
 
+
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :status)
     end
 end
