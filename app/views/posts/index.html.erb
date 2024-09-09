@@ -1,0 +1,14 @@
+<nav>
+  <%= button_to 'Create post', new_post_path, method: :get%>
+</nav>
+
+<% @posts.each do |post|%>
+ <% if @current_user.id == post.user_id%>
+  <%= button_to 'Edit post', edit_post_path(post), method: :get %>
+  <%= button_to 'Delete post', post_path(post), method: :delete%>
+  <%end%>
+  <div class="post">
+    <%= "Title: #{post.title}" %>
+    <%= "Description #{post.body}"%>
+  </div>
+<%end%>

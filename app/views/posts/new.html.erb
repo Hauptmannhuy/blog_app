@@ -1,0 +1,7 @@
+<%= form_with model: @post, method: :post do |f|%>
+  <%= f.label :title, 'Title' %>
+  <%= f.text_field :title %>
+  <%= f.label :body, 'Description' %>
+  <%= f.text_field :body %>
+  <%= f.submit %>
+<%end%>
