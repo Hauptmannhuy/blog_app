@@ -3,9 +3,11 @@
 </nav>
 
 <% @posts.each do |post|%>
- <% if @current_user.id == post.user_id%>
+<% if user_signed_in? || admin_signed_in?%>
+ <% if admin_signed_in? || @current_user.id == post.user_id?%>
   <%= button_to 'Edit post', edit_post_path(post), method: :get %>
   <%= button_to 'Delete post', post_path(post), method: :delete%>
+  <%end%>
   <%end%>
   <div class="post">
     <%= "Title: #{post.title}" %>
