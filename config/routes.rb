@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   get 'comments/create'
+  devise_for :users
   devise_for :admins,skip: :registrations
   devise_scope :admin do
     get 'admin', to: 'devise/sessions#new'
   end
+  namespace :api do
+  mount_devise_token_auth_for 'User', at: 'auth'
+  resources :posts, only: [:create, :show, :index, :destroy, :update]
+  end
 
-  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
