@@ -1,24 +1,37 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Installation
 
-Things you may want to cover:
+Clone repository
 
-* Ruby version
+```bash
+bundle install
+```
 
-* System dependencies
+## Usage
+Check rspec tests with
+```bash
+  rspec/spec/
+```
+The authentication information should be included by the client in the headers of each request. The headers follow the RFC 6750 Bearer Token format:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Authentication headers example:
+```json
+"access-token": "wwwww",
+"token-type":   "Bearer",
+"client":       "xxxxx",
+"expiry":       "yyyyy",
+"uid":          "zzzzz"
+```
+Format url for API request
+```bash
+  localhost/api/posts
+  localhost/api/auth/sign_in
+  localhost/api/auth 
+```
+Format of request to api/posts/
+```json
+  {"post": {
+    "title":,
+    "body":
+  }}
+```

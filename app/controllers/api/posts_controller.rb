@@ -17,7 +17,7 @@ class Api::PostsController < Api::ApplicationController
     if post.save
       render json: post
     else
-      render json: @errors.full_messages
+      render json: :unprocessable_entity, status: :unprocessable_entity
     end
   end
 
@@ -28,7 +28,8 @@ class Api::PostsController < Api::ApplicationController
       Post.update(post_id,post_params)
       render json: Post.find(post_id)
     else
-      render json: !response.nil? ? 'You can edit only your own posts.' : "Post doesn't exist"
+      render json: 'You can edit only your own posts.', status: 401 if !response.nil?
+      render json: 'Post does not exist.', status: 404 if response.nil?
     end
   end
 
@@ -39,7 +40,8 @@ class Api::PostsController < Api::ApplicationController
       Post.destroy(post_id)
       render json: 'Post successfully deleted'
     else
-      render json: !response.nil? ? 'You can delete only your own posts.' : "Post doesn't exist"
+      render json: 'You can delete only your own posts.', status: 401 if !response.nil?
+      render json: 'Post does not exist.', status: 404 if response.nil?
     end
   end
   private

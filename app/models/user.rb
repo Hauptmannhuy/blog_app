@@ -10,7 +10,12 @@ class User < ApplicationRecord
 
   def user_owns_post?(post_id)
    post = Post.where(id:post_id)[0]
-   return true if self.id == post.user_id
-   post.nil? ? "Post doesn't exist" : false
+   if post.nil?
+    nil
+   elsif self.id != post.user_id
+    false
+   else
+    true
+   end
   end
 end
