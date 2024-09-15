@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ .post {
+  padding: 12px;
+  border-radius: 2%;
+  border-style: solid;
+  border-width: 1px;
+  max-width: fit-content;
+ }
